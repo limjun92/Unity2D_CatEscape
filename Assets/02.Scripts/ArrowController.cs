@@ -5,8 +5,8 @@ using UnityEngine;
 public class ArrowController : MonoBehaviour
 {
     public float speed = -0.01f;
-    
-    GameObject player
+
+    GameObject player;
 
     void Start()
     {
@@ -28,11 +28,14 @@ public class ArrowController : MonoBehaviour
         Vector2 dir = p1 - p2;
         float d = dir.magnitude;
 
-        float r1 = 0.5f;
-        float r2 = 1.5f;
+        float r1 = 0.3f;
+        float r2 = 1f;
 
         if(d < r1 + r2)
         {
+            //UI를 갱신
+            GameObject director = GameObject.Find("GameDirector");
+            director.GetComponent<GameDirector>().DecreaseHp();
             //충돌했을 때 
             Destroy(gameObject);
         }
